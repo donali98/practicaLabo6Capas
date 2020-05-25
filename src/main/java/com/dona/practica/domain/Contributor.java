@@ -1,7 +1,7 @@
 package com.dona.practica.domain;
 
-
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -35,10 +37,11 @@ public class Contributor {
     private String lastName;
 
     @NotEmpty(message = "El campo no debe estar vacio")
+    @Size(max = 14, min = 14, message = "Exactamente 14 caracteres")
     @Column(name = "s_nit")
     private String nit;
 
-    @Column(name = "s_fecha_ingreso")
+    @Column(name = "f_fecha_ingreso")
     private LocalDate inDate;
 
 
@@ -99,5 +102,18 @@ public class Contributor {
         this.importance = importance;
     }
 
+    public String getDateDelegate() {
+        if(this.inDate == null)
+            return "";
+        else {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String shortDate = this.inDate.format(formatter);
+            return shortDate;
+        }
+    }
     
+    @PrePersist
+    public void prePersist() {
+        this.inDate = LocalDate.now();
+    }
 }
