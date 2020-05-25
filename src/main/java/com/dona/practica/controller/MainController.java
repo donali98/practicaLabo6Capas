@@ -27,9 +27,8 @@ public class MainController {
         }catch(Exception e){
             e.printStackTrace();
         }
-        mav.addObject("contributor", new Contributor());
         mav.addObject("importances", importances);
-
+        mav.addObject("contributor", new Contributor());
         mav.setViewName("index");
         return mav;
     }

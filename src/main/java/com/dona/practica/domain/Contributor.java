@@ -43,7 +43,7 @@ public class Contributor {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "c_importance")
+    @JoinColumn(name = "c_importancia")
     private Importance importance;
 
 

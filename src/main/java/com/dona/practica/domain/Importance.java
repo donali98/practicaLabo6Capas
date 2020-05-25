@@ -27,8 +27,8 @@ public class Importance {
     @Column(name = "s_importancia")
     private String importance;
 
-    @OneToMany(mappedBy = "importance",fetch = FetchType.EAGER)
-    private List<Importance> importances;
+    @OneToMany(mappedBy = "importance",fetch = FetchType.LAZY)
+    private List<Contributor> contributors;
 
     public Importance() {}
 
@@ -50,12 +50,12 @@ public class Importance {
 
 
 
-    public List<Importance> getImportances() {
-        return this.importances;
+    public List<Contributor> getImportances() {
+        return this.contributors;
     }
 
-    public void setImportances(List<Importance> importances) {
-        this.importances = importances;
+    public void setImportances(List<Contributor> contributors) {
+        this.contributors = contributors;
     }
 
 

@@ -8,11 +8,12 @@
 <body>
     <form th:action="@{/saveContributor}" th:object="${contributor}" method="POST">
         <label for="importance">Importancia</label>
-        <select name="importance" id="importance" th:field="*{importance}">
+        <select name="importance" id="importance" th:field="*{importance.codImportance}">
             <option
                 th:each=" im: ${importances}"
                 th:value="${im.codImportance}"
                 th:text="${im.importance}">
+
             </option>
         </select>
     </form>
